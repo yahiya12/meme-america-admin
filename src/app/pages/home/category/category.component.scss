@@ -1,0 +1,55 @@
+.profile_images{
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 70px;
+}
+.category-design{
+    margin-top: 50px;
+    .border{
+      
+        border-radius:10px ;
+    }
+}
+
+.category-design:hover{
+  transition: transform 0.6s ease;
+    transform: scale(1.1);
+  // mat-icon{
+    
+  // }
+}
+
+.even { 
+  margin-left: 10%;
+    width: 80%;
+    background:linear-gradient(to bottom, #023BFA, #2E3F7A); 
+}
+.odd { 
+  margin-left: 10%;
+    width: 80%;
+    background:linear-gradient(to bottom, #FF6500, #FFC300); 
+}
+
+.example-viewport {
+    height: 550px;
+    width: 100%;
+    // width: 950px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    width: 4px;
+    background: #f5f5f5;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    width: 1em;
+    background-color: #ddd;
+    outline: 1px solid slategrey;
+    border-radius: 1rem;
+  }

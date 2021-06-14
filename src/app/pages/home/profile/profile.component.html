@@ -1,0 +1,56 @@
+<div class="container-fluid" style="margin-bottom: 50px;">
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-lg-6 col-md-6 order-design" >
+            <div (click)="goToTotalOrder()" class="border" style="width: 80%;
+            margin-left: 10%; background:linear-gradient(to bottom, #023BFA, #2E3F7A);
+            border: 1px solid  #023BFA;">
+                <div class="corner-design" style="border: 1px solid #3A61E4;background: #3A61E4;">
+                    <mat-icon matSuffix> shopping_cart</mat-icon>
+                </div>
+                <h1>{{orderList.orders}}</h1>
+                <p style="font-size: 18px;font-weight: bold;">Orders</p>
+                    <p style="margin-left: 50px;margin-right: 50px;
+                    margin-bottom: 50px;">sed ut perspiciatis under natueres error sit quae ab illa inventor</p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 order-design" >
+            <div (click)="goToPendingOrder()" class="border" style="width: 80%;
+            margin-left: 10%; background:linear-gradient(to bottom, #FF6500, #FFC300);
+            border: 1px solid #FF6500;">
+                <div class="corner-design" style="border: 1px solid #FFB51B;background: #FFB51B;">
+                    <mat-icon matSuffix> list_alt</mat-icon>
+                </div>
+                <h1>{{orderList.progress}}</h1>
+                <p style="font-size: 18px;font-weight: bold;">On-going</p>
+                    <p style="margin-left: 50px;margin-right: 50px;
+                    margin-bottom: 50px;">sed ut perspiciatis under natueres error sit quae ab illa inventor</p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 order-design" >
+            <div (click)="goToCompleteOrder()" class="border" style=" width: 80%;
+            margin-left: 10%;background:linear-gradient(to bottom, #56FB00, #47941E);
+            border: 1px solid #56FB00;">
+                <div class="corner-design" style="border: 1px solid #94F660;background: #94F660;">
+                    <mat-icon matSuffix> work</mat-icon>
+                </div>
+                <h1>{{orderList.completed}}</h1>
+                <p style="font-size: 18px;font-weight: bold;">Completed</p>
+                    <p style="margin-left: 50px;margin-right: 50px;
+                    margin-bottom: 50px;">sed ut perspiciatis under natueres error sit quae ab illa inventor</p>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 order-design">
+            <div (click)="goToCancellOrder()" class="border" style="width: 80%;
+            margin-left: 10%; background:linear-gradient(to bottom, #F82E02, #7F1D08);
+            border: 1px solid #F82E02;">
+                <div class="corner-design" style="border: 1px solid #D8401F;background: #D8401F;">
+                    <mat-icon matSuffix> directions_bus_filled</mat-icon>
+                </div>
+                <h1>{{orderList.canceled}}</h1>
+                <p style="font-size: 18px;font-weight: bold;">Cancelled</p>
+                    <p style="margin-left: 50px;margin-right: 50px;
+                    margin-bottom: 50px;">sed ut perspiciatis under natueres error sit quae ab illa inventor</p>
+            </div>
+        </div>
+    </div>
+</div>

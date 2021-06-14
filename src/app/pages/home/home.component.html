@@ -1,0 +1,53 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="border-right: 2px solid #d3d3d31f;">
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <div style="text-align: center;">
+            <img class="profile_images"
+              src="https://www.touchtaiwan.com/images/default.jpg">
+          </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <p *ngIf="profile.role == 'SUPER-ADMIN!'" style="margin-top: 16px;font-size: 18px;
+          color: #C2185B;font-weight: bold;">{{profile.userName}}</p>
+          <p *ngIf="profile.role == 'SHOP-ADMIN!'" style="margin-top: 16px;font-size: 18px;
+          color: #C2185B;font-weight: bold;">{{profile.shopName}}</p>
+        </div>
+      </div>
+      <section style="margin-top: 20px;">
+        <button mat-button routerLink="profile" (click)="select('profile')" [ngClass]="selectsegment=='profile'?'select':'none'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">person_outline</mat-icon>&nbsp;&nbsp;Profile
+        </button>
+      </section>
+     
+      <section style="margin-top: 10px;">
+        <button mat-button routerLink="product" (click)="select('product')" [ngClass]="selectsegment=='product'?'select':'none'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">shopping_bag</mat-icon>&nbsp;&nbsp;Products
+        </button>
+      </section>
+
+      <section style="margin-top: 10px;">
+        <button mat-button routerLink="product" (click)="select('product')" [ngClass]="selectsegment=='product'?'select':'none'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">shopping_bag</mat-icon>&nbsp;&nbsp;Banner
+        </button>
+      </section>
+   
+  
+     <section style="margin-top: 10px;">
+        <button mat-button (click)="select('logout')" [ngClass]="selectsegment=='logout'?'select':'none'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>&nbsp;&nbsp;Logout
+        </button>
+      </section>
+    </div>
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- <div>
+    <button routerLink="customer">Tab1</button>
+    <button routerLink="second">Tab2</button>
+  </div> -->
+<!-- <router-outlet></router-outlet> -->

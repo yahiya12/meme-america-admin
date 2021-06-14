@@ -1,0 +1,230 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+
+    <div class="container-fluid" style="margin-bottom: 50px;" *ngIf="profile.role == 'SUPER-ADMIN!'">
+        <div class="as-item" style="margin-top: 40px;">
+            <div *ngIf="pageName == 'create'">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div *ngIf="!base64"
+                            style="text-align: center;width: 70%;margin-left: 15%;border-radius: 24px;height: 110px;border: 1px solid goldenrod;">
+                            <mat-icon style="margin-top: 40px;color: goldenrod;" aria-hidden="false"
+                                aria-label="Example home icon">add_circle_outline</mat-icon>
+                        </div>
+                        <div *ngIf="base64">
+                            <img style="width: 130px;
+                        height: 130px;
+                        border-radius: 70px;
+                        border: 1px solid lavender" [src]="base64">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin:auto">
+                        <div class="custom-file" style="margin-top: 10px;">
+                            <input type="file" class="custom-file-input" id="customFile"
+                                (change)="onFileChange($event)">
+                            <label class="custom-file-label custom-file-label" for="customFile"> <span
+                                    *ngIf="!fileName">Choose
+                                    Image</span><span *ngIf="fileName">{{fileName}}</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                            <mat-label>MasterName</mat-label>
+                            <input matInput [(ngModel)]="masterName" placeholder="Enter the MasterName">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button (click)="addCategory()" mat-button
+                            style="background: goldenrod;color: white;margin-top: 10px;font-weight: bold;">
+                            Submit</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <hr style="width: 100%;"> -->
+            <div *ngIf="pageName == 'edit'">
+                <h1 style="text-align: center;" color="primary">Main Category</h1>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <div *ngIf="!maincategorybase64"
+                            style="text-align: center;width: 70%;margin-left: 15%;border-radius: 24px;height: 110px;border: 1px solid goldenrod;">
+                            <mat-icon style="margin-top: 40px;color: goldenrod;" aria-hidden="false"
+                                aria-label="Example home icon">add_circle_outline</mat-icon>
+                        </div>
+                        <div *ngIf="maincategorybase64">
+                            <img style="width: 130px;
+                        height: 130px;
+                        border-radius: 70px;
+                        border: 1px solid lavender" [src]="maincategorybase64">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin:auto">
+                        <div class="custom-file" style="margin-top: 10px;">
+                            <input type="file" class="custom-file-input" id="customFile"
+                                (change)="onFileMainCategoryChange($event)">
+                            <label class="custom-file-label custom-file-label" for="customFile"> <span
+                                    *ngIf="!maincategoryfileName">Choose
+                                    Image</span><span
+                                    *ngIf="maincategoryfileName">{{maincategoryfileName}}</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                            <mat-label>Main Category Name</mat-label>
+                            <input matInput [(ngModel)]="mainCatName" placeholder="Enter the Category Name">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button (click)="addSubCategory()" mat-button
+                            style="background: goldenrod;color: white;margin-top: 10px;font-weight: bold;">
+                            Submit</button>
+                    </div>
+                </div>
+                <hr style="width: 100%;">
+                <h1 style="text-align: center;" color="primary">Category</h1>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Select Main Category</mat-label>
+                            <mat-select [(ngModel)]="selectedmaincatId" name="food">
+                                <mat-option *ngFor="let maincategory of category?.mainCategories"
+                                    [value]="maincategory.maincatId">
+                                    {{maincategory.mainCatName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                            <mat-label>Category Name</mat-label>
+                            <input matInput [(ngModel)]="childCatName" placeholder="Enter the Category Name">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button (click)="addChildCategory()" mat-button
+                            style="background: goldenrod;color: white;margin-top: 10px;font-weight: bold;">
+                            Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="pageName == 'edit' && profile.role == 'SUPER-ADMIN!'" class="container-fluid" style="margin-bottom: 50px;">
+        <div class="mx-auto mt-5" style="width: 250px;">
+            <h1 style="text-align: center;" color="primary">View Main Category</h1>
+            <hr style="width:70%;">
+            <hr style="width:40%;">
+        </div>
+        <div *ngIf="category?.mainCategories.length == 0">
+            <p style="text-align: center;margin-top: 20px;font-weight: bold;">No Category Found</p>
+        </div>
+        <div class="row" *ngIf="category?.mainCategories.length > 0 ">
+            <div class="col-lg-4 col-md-4 category-design"
+                *ngFor="let maincategory of category?.mainCategories;let i = index;">
+                <div class="border" style="border:1px solid gray">
+                    <div class="row">
+                        <div class="col" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <img *ngIf="maincategory.catUrl !=null && maincategory.catUrl !=undefined && maincategory.catUrl !='' "
+                                        class="profile_images" src="{{maincategory.catUrl}}">
+                                    <img *ngIf="maincategory.catUrl ==null || maincategory.catUrl ==undefined || maincategory.catUrl =='' "
+                                        class="profile_images"
+                                        src="https://homecraft-images.s3.ap-south-1.amazonaws.com/categories/default.jpg">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <mat-icon style="line-height: 50px;"matSuffix>clear</mat-icon>
+                                </div>
+                            </div>
+                            <p style="font-weight: bold;">{{maincategory.mainCatName}}</p>
+                            <hr style="width: 80%;">
+                            <div class="row" *ngFor="let category of maincategory?.categories;let j = index;">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div>
+                                        <img *ngIf="category.catUrl !=null && category.catUrl !=undefined && category.catUrl !='' "
+                                            class="catprofile_images" src="{{category.catUrl}}">
+                                        <img *ngIf="category.catUrl ==null || category.catUrl ==undefined || category.catUrl =='' "
+                                            class="catprofile_images"
+                                            src="https://homecraft-images.s3.ap-south-1.amazonaws.com/categories/default.jpg">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <p style="line-height: 60px;">{{category.cName}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <mat-icon style="line-height: 60px;" matSuffix>delete</mat-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="pageName == 'edit' && profile.role == 'SHOP-ADMIN!'" class="container-fluid" style="margin-bottom: 50px;">
+        <div class="mx-auto mt-5" style="width: 250px;">
+            <h1 style="text-align: center;" color="primary">View Main Category</h1>
+            <hr style="width:70%;">
+            <hr style="width:40%;">
+        </div>
+        <div *ngIf="category?.mainCategories.length == 0">
+            <p style="text-align: center;margin-top: 20px;font-weight: bold;">No Category Found</p>
+        </div>
+        <div class="row" *ngIf="category?.mainCategories.length > 0 ">
+            <div class="col-lg-4 col-md-4 category-design"
+                *ngFor="let maincategory of category?.mainCategories;let i = index;">
+                <div class="border" style="border:1px solid gray">
+                    <div class="row">
+                        <div class="col" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                    <img *ngIf="maincategory.catUrl !=null && maincategory.catUrl !=undefined && maincategory.catUrl !='' "
+                                        class="profile_images" src="{{maincategory.catUrl}}">
+                                    <img *ngIf="maincategory.catUrl ==null || maincategory.catUrl ==undefined || maincategory.catUrl =='' "
+                                        class="profile_images"
+                                        src="https://homecraft-images.s3.ap-south-1.amazonaws.com/categories/default.jpg">
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <!-- <mat-icon (click)="deleteMainCategory(i)"style="line-height: 50px;"matSuffix>clear</mat-icon> -->
+                                </div>
+                            </div>
+                            <p style="font-weight: bold;">{{maincategory.mainCatName}}</p>
+                            <hr style="width: 80%;">
+                            <div class="row" *ngFor="let category of maincategory?.categories;let j = index;">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div>
+                                        <img *ngIf="category.catUrl !=null && category.catUrl !=undefined && category.catUrl !='' "
+                                            class="catprofile_images" src="{{category.catUrl}}">
+                                        <img *ngIf="category.catUrl ==null || category.catUrl ==undefined || category.catUrl =='' "
+                                            class="catprofile_images"
+                                            src="https://homecraft-images.s3.ap-south-1.amazonaws.com/categories/default.jpg">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <p style="line-height: 60px;">{{category.cName}}</p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <!-- <mat-icon style="line-height: 60px;" matSuffix>delete</mat-icon> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>

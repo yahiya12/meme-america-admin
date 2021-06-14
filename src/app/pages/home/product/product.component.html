@@ -1,0 +1,109 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div class="container-fluid" style="margin-bottom: 50px;">
+
+        <div class="as-item" style="margin-top: 40px;">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                </div>
+                <div class="col-lg-5 col-md-5" style="margin:auto">
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <button (click)="goToAddProduct()" mat-button style="background: #C2185B;
+                    color: white;
+                    font-weight: bold;">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon">add_circle_outline</mat-icon>
+                        &nbsp;&nbsp;Add Product
+                    </button>
+                </div>
+            </div>
+            <div class="row" style="background: lavender;margin-top: 10px;">
+                <div class="col" style="margin-top: 12px;">
+                    <div>
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1">
+
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Name</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Price</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Offer</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Stock</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Main Town</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="font-size: 16px;
+                            font-weight: bold;">Sub Town</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngFor="let product of productList;let i = index">
+                <div class="col hover">
+                    <div >
+                        <div class="row">
+                            <div class="col-lg-1 col-md-1">
+                                <div style="text-align: center;">
+                                    <img class="profile_images" src="{{product.productImage}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="margin-top: 14px;">{{product.productName}}</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="margin-top: 14px;">&#36;&nbsp; {{product.price}}</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="margin-top: 14px;">{{product.offer}}</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <p style="margin-top: 14px;">{{product.stock}}</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="margin-top: 14px;">{{product.mainCategory}}</p>
+                            </div>
+                            <div class="col-lg-2 col-md-2">
+                                <p style="margin-top: 14px;">{{product.subCategory}}</p>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <mat-icon (click)="goToEditProduct(i)" style="margin-top: 14px;color:gray" aria-hidden="false"
+                                aria-label="Example home icon">visibility</mat-icon>
+                            </div>
+                            <div class="col-lg-1 col-md-1">
+                                <mat-icon (click)="deleteProduct(i)" style="margin-top: 14px;color:red;cursor: pointer;" aria-hidden="false"
+                                    aria-label="Example home icon">delete</mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="width: 100%;">
+            </div>
+            <div *ngIf="productList.length == 0">
+                <p style="text-align: center;margin-top: 20px;font-weight: bold;">No Category Found</p>
+            </div>
+
+        </div>
+
+    </div>
+</cdk-virtual-scroll-viewport>

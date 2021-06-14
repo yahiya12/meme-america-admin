@@ -1,0 +1,60 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div class="container-fluid" style="margin-bottom: 50px;" *ngIf="profile.role == 'SUPER-ADMIN!'">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 category-design">
+                <div  (click)="goToCategory()" style=" margin-left: 10%;
+                width: 80%;border:1px solid goldenrod;border-radius:10px ;text-align: center;">
+                    <mat-icon style="color: goldenrod;
+                margin-top: 12px;
+                zoom: 1.5;" aria-hidden="false" aria-label="Example home icon">add_circle</mat-icon>
+                    <p style="margin-top: 10px;
+                color: goldenrod;
+                font-weight: bold;">Add Category</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 category-design"
+                *ngFor="let category of categoryList;let i = index;let o= odd; let e=even;">
+                <div [ngClass]="{ odd: o, even: e }" class="border" >
+                    <div class="row">
+                        <div  (click)="goToEditCategory(i)" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <img class="profile_images" src="{{category.mainCategory}}">
+                        </div>
+                        <div  (click)="goToEditCategory(i)" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <p style="line-height: 88px;color: white;font-weight: bold;font-size: 12px;text-align: center;">
+                                {{category.mainCategory}}</p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <mat-icon  style="line-height: 50px;color:white"matSuffix>delete</mat-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="categoryList.length == 0">
+                <p style="text-align: center;margin-top: 20px;font-weight: bold;">No Category Found</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="margin-bottom: 50px;" *ngIf="profile.role == 'SHOP-ADMIN!'">
+        <div class="row" style="margin-top: 10px;">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 category-design"
+                *ngFor="let category of categoryList;let i = index;let o= odd; let e=even;">
+                <div [ngClass]="{ odd: o, even: e }" class="border" >
+                    <div class="row">
+                        <div  (click)="goToEditCategory(i)" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <img class="profile_images" src="{{category.masterUrl}}">
+                        </div>
+                        <div  (click)="goToEditCategory(i)" class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <p style="line-height: 88px;color: white;font-weight: bold;font-size: 12px;">
+                                {{category.masterName}}</p>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="categoryList.length == 0">
+                <p style="text-align: center;margin-top: 20px;font-weight: bold;">No Category Found</p>
+            </div>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>

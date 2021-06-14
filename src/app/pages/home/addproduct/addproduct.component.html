@@ -1,0 +1,130 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <div class="container-fluid" style="margin-bottom: 50px;">
+
+        <div class="as-item" style="margin-top: 40px;">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+                    *ngIf="productDetails?.imageurl == null || productDetails?.imageurl == '' || productDetails?.imageurl == undefined">
+                    <div *ngIf="!base64"
+                        style="width: 70%;margin-left: 15%;border-radius: 24px;height: 110px;border: 1px solid #C2185B;">
+                        <mat-icon style="margin-top: 40px;color: #C2185B;" aria-hidden="false"
+                            aria-label="Example home icon">add_circle_outline</mat-icon>
+                    </div>
+                    <div *ngIf="base64">
+                        <img style="width: 130px;
+                        height: 130px;
+                        border-radius: 70px;
+                        border: 1px solid lavender" [src]="base64">
+                    </div>
+                    <div class="custom-file" style="margin-top: 10px;">
+                        <input type="file" class="custom-file-input" id="customFile" (change)="onFileChange($event)">
+                        <label class="custom-file-label custom-file-label" for="customFile"> <span
+                                *ngIf="!fileName">Choose
+                                Image</span><span *ngIf="fileName">{{fileName}}</span></label>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" *ngIf="productDetails?.productImage != null && productDetails?.productImage != '' && productDetails?.productImage != undefined">
+                    <img style="width: 70%;border-radius: 24px;object-fit: cover;"
+                    onerror="this.src='https://www.touchtaiwan.com/images/default.jpg'"   src="{{productDetails?.productImage}}">
+                </div>
+                <div class="col-lg-5 col-md-5" style="margin:auto">
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <button (click)="createProduct()"
+                        mat-button style="background: #C2185B;
+                    color: white;
+                    font-weight: bold;cursor: pointer;">
+                        Save
+                    </button>
+                    <button *ngIf="pageName == 'edit'" [disabled]="product.invalid" (click)="updateProduct()" mat-button
+                        style="background: #C2185B;
+                    color: white;
+                    font-weight: bold;">
+                        Update
+                    </button>
+                </div>
+            </div>
+            <div [formGroup]="product" class="row" style="margin-top: 10px;">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>ProductID</mat-label>
+                        <input matInput formControlName="pId" placeholder="Enter the ProductId">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>ProductName</mat-label>
+                        <input matInput formControlName="pName" placeholder="Enter the ProductName">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Main category</mat-label>
+                        <mat-select formControlName="mtown" (selectionChange)="selectMastercategory($event)">
+                            <mat-option *ngFor="let mastercategory of categoryList" [value]="mastercategory.mainCategory">
+                                {{mastercategory.mainCategory}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Sub category</mat-label>
+                        <mat-select formControlName="subtown" (selectionChange)="selectMaincategory($event)">
+                            <mat-option *ngFor="let subCategory of selectMasterCategory != undefined ? selectMasterCategory.subCategory : []"
+                                [value]="subCategory">
+                                {{subCategory}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+              
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Stock</mat-label>
+                        <input matInput formControlName="stock" placeholder="Enter the Stock">
+                    </mat-form-field>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Price</mat-label>
+                        <input matInput type="number" formControlName="price" placeholder="Enter the Price">
+                    </mat-form-field>
+                </div>
+                <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                         <mat-icon matSuffix>perm_identity</mat-icon>
+                        <mat-label>Offer</mat-label>
+                        <input matInput type="number" formControlName="offer" placeholder="Enter the Offer">
+                    </mat-form-field>
+                </div> -->
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Descpription</mat-label>
+                        <textarea matInput formControlName="descpription"
+                            placeholder="Enter the Descpription"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <mat-form-field appearance="outline">
+                        <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                        <mat-label>Vendor Name</mat-label>
+                        <textarea matInput formControlName="vendorName"
+                            placeholder="Vendor Name"></textarea>
+                    </mat-form-field>
+                </div>
+               
+            </div>
+           
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>

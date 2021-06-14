@@ -1,0 +1,24 @@
+.profile_images{
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 70px;
+}
+.profile_images:hover {
+    transition: transform 0.6s ease;
+    transform: scale(1.1);
+  }
+section{
+    button{
+        text-align: left;
+        width: 70%;
+    }
+}
+.select{
+    background: #C2185B;
+    color:white
+}
+.none:hover{
+    transition: transform 0.6s ease;
+    transform: scale(1.1);
+}
