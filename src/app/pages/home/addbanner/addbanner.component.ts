@@ -47,45 +47,6 @@ export class AddbannerComponent implements OnInit {
     }
   }
 
-  addMobileBanner(){
-    let fb = new FormData();
-    fb.append('file', this.selectedimages)
-    let body: any = {};
-    body.status = this.status,
-    body.shopId = this.profile.shopName,
-    body.file = fb;
-    this.api.addMobileSlider(body).subscribe((data: any) => {
-      // this.category = data;
-      this.api.openSnackBarAction("MobileBanner added Sucessfully", 'Ok');
-      console.log('MobileBanner added Sucessfully')
-    });
-  }
-
-  updateMobileBanner(){
-    let body: any = {};
-    body.banId = this.banner.banId,
-    body.status = this.status,
-    this.api.updateMobileSlider(body).subscribe((data: any) => {
-      // this.category = data;
-      this.api.openSnackBarAction("MobileBanner Updated Sucessfully", 'Ok');
-      console.log('MobileBanner Updated Sucessfully')
-    });
-  }
-
-  // addWebBanner(){
-  //   let fb = new FormData();
-  //   fb.append('file', this.selectedimages)
-  //   let body: any = {};
-  //   body.status = this.status,
-  //   body.shopId = this.profile.shopName,
-  //   body.file = fb;
-  //   this.api.addWebSlider(body).subscribe((data: any) => {
-  //     // this.category = data;
-  //     this.api.openSnackBarAction("WebBanner added Sucessfully", 'Ok');
-  //     console.log(' WebBanner added Sucessfully')
-  //   });
-  // }
-
   addWebBanner(){
     let fb = new FormData();
     fb.set('bannerImage',this.selectedimages);
@@ -95,24 +56,6 @@ export class AddbannerComponent implements OnInit {
       console.log(' WebBanner added Sucessfully')
     });
   }
-//   createProduct() {
-//     let fb = new FormData();
-//     fb.set('productImage',this.selectedimages);
-//     fb.set('productId',this.product.value.pId);
-//     fb.set('productName',this.product.value.pName);
-//     fb.set('mainCategory',this.product.value.mtown);
-//     fb.set('subCategory',this.product.value.subtown);
-//     fb.set('stock',this.product.value.stock);
-//     fb.set('price',this.product.value.price);
-//     fb.set('description',this.product.value.descpription);
-//     fb.set('vendorName',this.product.value.vendorName);
-//    this.api.addProduct(fb).subscribe((data: any) => {
-//      this.api.openSnackBarAction("Product Added Sucessfully", 'Ok');
-//      console.log('Product Added Sucessfully')
-//      console.log("datazzz",data);
-//    });
-//  }
-
 
   updateWebBanner(){
     let body: any = {};

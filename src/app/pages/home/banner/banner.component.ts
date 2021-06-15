@@ -17,25 +17,17 @@ export class BannerComponent implements OnInit {
     private messageService:MessageService) { }
 
   ngOnInit(): void {
-    this.getMobileSlider()
+    this.getWebSlider();
   }
 
   onClick(event: any) {
     console.log(event.tab.textLabel);
-    if (event.tab.textLabel == "Mobile") {
-      this.getMobileSlider()
-    } else if (event.tab.textLabel == "Web") {
+     if (event.tab.textLabel == "Web") {
       this.getWebSlider()
     }
   }
 
-  getMobileSlider() {
-    this.api.getMobileSlider().subscribe((data: any) => {
-      this.mobileSliderList = data;
-      console.log(this.mobileSliderList)
-    });
-  }
-
+ 
   getWebSlider() {
     this.api.getWebSlider().subscribe((data: any) => {
       this.webSliderList = data;
@@ -44,26 +36,6 @@ export class BannerComponent implements OnInit {
   }
 
  
-
-  goToAddMobileBanner() {
-    let navigationExtras: any = {
-      queryParams: {
-        pageName: 'createMobileBanner',
-      }
-    }
-    this.router.navigate(['home/banner/addbanner'], navigationExtras);
-  }
-
-  goToEditMobileBanner(i: any) {
-    let navigationExtras: any = {
-      queryParams: {
-        pageName: 'editMobileBanner',
-      }
-    }
-    let banner: any = JSON.stringify(this.mobileSliderList[i])
-    this.messageService.setBannerDetails(banner);
-    this.router.navigate(['home/banner/addbanner'], navigationExtras);
-  }
 
   goToAddWebBanner() {
     let navigationExtras: any = {
@@ -85,20 +57,11 @@ export class BannerComponent implements OnInit {
     this.router.navigate(['home/banner/addbanner'], navigationExtras);
   }
 
-  deleteMobileSlider(i: any) {
-    let body: any = {}
-    body.id = this.mobileSliderList[i].banId
-    this.api.deleteMobileSlider(body).subscribe((data: any) => {
-      // console.log(data)
-      this.mobileSliderList.splice(i, 1)
-      this.api.openSnackBarAction("Banner Deleted Sucessfully", 'Ok');
-      console.log('Banner Deleted Sucessfully')
-    });
-  }
+
 
   deleteWebSlider(i: any) {
     let body: any = {}
-    body.id = this.webSliderList[i].banId
+    body.id = this.webSliderList[i]._id
     this.api.deleteWebSlider(body).subscribe((data: any) => {
       // console.log(data)
       this.webSliderList.splice(i, 1)
