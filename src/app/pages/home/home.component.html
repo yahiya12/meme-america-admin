@@ -21,6 +21,8 @@
           <mat-icon aria-hidden="false" aria-label="Example home icon">person_outline</mat-icon>&nbsp;&nbsp;Profile
         </button>
       </section>
+
+     
      
       <section style="margin-top: 10px;">
         <button mat-button routerLink="product" (click)="select('product')" [ngClass]="selectsegment=='product'?'select':'none'">
@@ -28,7 +30,13 @@
         </button>
       </section>
 
-      
+      <section style="margin-top: 10px;">
+        <button mat-button routerLink="banner" (click)="select('banner')" [ngClass]="selectsegment=='banner'?'select':'none'">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">dashboard</mat-icon>&nbsp;&nbsp;Banner
+        </button>
+      </section>
+
+     
    
   
      <section style="margin-top: 10px;">

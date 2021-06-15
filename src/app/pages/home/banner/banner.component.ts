@@ -17,15 +17,31 @@ export class BannerComponent implements OnInit {
     private messageService:MessageService) { }
 
   ngOnInit(): void {
-  
+    this.getMobileSlider()
   }
 
   onClick(event: any) {
     console.log(event.tab.textLabel);
-    
+    if (event.tab.textLabel == "Mobile") {
+      this.getMobileSlider()
+    } else if (event.tab.textLabel == "Web") {
+      this.getWebSlider()
+    }
   }
 
-  
+  getMobileSlider() {
+    this.api.getMobileSlider().subscribe((data: any) => {
+      this.mobileSliderList = data;
+      console.log(this.mobileSliderList)
+    });
+  }
+
+  getWebSlider() {
+    this.api.getWebSlider().subscribe((data: any) => {
+      this.webSliderList = data;
+      console.log(this.webSliderList)
+    });
+  }
 
  
 
@@ -69,9 +85,28 @@ export class BannerComponent implements OnInit {
     this.router.navigate(['home/banner/addbanner'], navigationExtras);
   }
 
- 
+  deleteMobileSlider(i: any) {
+    let body: any = {}
+    body.id = this.mobileSliderList[i].banId
+    this.api.deleteMobileSlider(body).subscribe((data: any) => {
+      // console.log(data)
+      this.mobileSliderList.splice(i, 1)
+      this.api.openSnackBarAction("Banner Deleted Sucessfully", 'Ok');
+      console.log('Banner Deleted Sucessfully')
+    });
+  }
 
- 
+  deleteWebSlider(i: any) {
+    let body: any = {}
+    body.id = this.webSliderList[i].banId
+    this.api.deleteWebSlider(body).subscribe((data: any) => {
+      // console.log(data)
+      this.webSliderList.splice(i, 1)
+      this.api.openSnackBarAction("Banner Deleted Sucessfully", 'Ok');
+      console.log('Banner Deleted Sucessfully')
+    });
+  }
+
 
 }
 

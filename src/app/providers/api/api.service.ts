@@ -68,6 +68,12 @@ export class ApiService {
     return this.http.delete<any>(url);
   }
 
+  // Add Web Slider
+  public addWebSlider(data: any): Observable<any> {
+    const url = 'http://localhost:8080/homecraft/banner/new';
+    return this.http.post<any>(url, data,{responseType: 'text' as 'json'});
+  }
+
   //Update Product
    // Update Product
    public updateProduct(data: any): Observable<any> {
@@ -95,8 +101,47 @@ export class ApiService {
   }
 
 
- 
+  public getMobileSlider(): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/slider/mobile';
+    return this.http.get<any>(url);
+  }
 
+  // Get Web Slider
+  public getWebSlider(): Observable<any> {
+    const url = 'http://localhost:8080/homecraft/display/banner';
+    return this.http.get<any>(url);
+  }
+
+  // Add Mobile Slider
+  public addMobileSlider(data: any): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/slider/mobile';
+    return this.http.post<any>(url, data.file, { params: data });
+  }
+
+  // Update Mobile Slider
+  public updateMobileSlider(data: any): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/update/mslider';
+    return this.http.post<any>(url, null, { params: data, responseType: 'text' as 'json' });
+  }
+
+  // Delete Mobile Slider
+  public deleteMobileSlider(data: any): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/slider/delete';
+    return this.http.post<any>(url, null, { params: data });
+  } 
+
+
+  // Update Web Slider
+  public updateWebSlider(data: any): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/update/slider';
+    return this.http.post<any>(url, null, { params: data, responseType: 'text' as 'json' });
+  }
+
+  // Delete Web Slider
+  public deleteWebSlider(data: any): Observable<any> {
+    const url = this.ipAddress + '/homecraftV1.0/homecraft/delete/banner';
+    return this.http.post<any>(url, null, { params: data });
+  }
 
   
 

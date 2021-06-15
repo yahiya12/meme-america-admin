@@ -15,7 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { AddcategoryComponent } from './addcategory/addcategory.component';
 
-
+import { AddbannerComponent } from './addbanner/addbanner.component';
 
 
 
@@ -27,21 +27,12 @@ import { BannerComponent } from './banner/banner.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    
     ProfileComponent,
     CategoryComponent,
     ProductComponent,
-  
-  
-    
+    AddbannerComponent,
     AddproductComponent,
-    
-
     AddcategoryComponent,
-    
-  
-  
-  
     BannerComponent,
     
   ],

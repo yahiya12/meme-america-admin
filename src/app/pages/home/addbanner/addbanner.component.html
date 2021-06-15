@@ -1,0 +1,100 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+
+    <div class="container-fluid" style="margin-bottom: 50px;">
+        <div class="as-item" style="margin-top: 40px;">
+            <div *ngIf="pageName == 'createMobileBanner' || pageName == 'editMobileBanner' ">
+                <div class="row" *ngIf="pageName == 'createMobileBanner'">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin:auto">
+                        <div class="custom-file" style="margin-top: 10px;">
+                            <input type="file" class="custom-file-input" id="customFile"
+                                (change)="onFileChange($event)">
+                            <label class="custom-file-label custom-file-label" for="customFile"> <span
+                                    *ngIf="!fileName">Choose
+                                    Image</span><span *ngIf="fileName">{{fileName}}</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="status" name="Status">
+                                <mat-option value="active">Active </mat-option>
+                                <mat-option value="inactive">InActive </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button *ngIf="pageName == 'createMobileBanner'" (click)="addMobileBanner()" mat-button
+                            style="background: goldenrod;color: white;margin-top: 10px;font-weight: bold;">
+                            Submit</button>
+                        <button *ngIf="pageName == 'editMobileBanner'" (click)="updateMobileBanner()" mat-button
+                            style="background: goldenrod;color: white;margin-top: 10px;font-weight: bold;">
+                            Update</button>
+                    </div>
+                </div>
+
+                <div class="row" style="width: 100%;">
+                    <div *ngIf="base64" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 12px;">
+                        <img style="width: 100%;height: 300px;object-fit: cover;" [src]="base64">
+                    </div>
+                    <div *ngIf="banner?.bannerUrl" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        style="margin-top: 12px;">
+                        <img style="width: 100%;height: 300px;object-fit: cover;" src="{{banner?.bannerUrl}}">
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="pageName == 'createWebBanner' || pageName == 'editWebBanner' ">
+                <div class="row" *ngIf="pageName == 'createWebBanner'">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin:auto">
+                        <div class="custom-file" style="margin-top: 10px;">
+                            <input type="file" class="custom-file-input" id="customFile"
+                                (change)="onFileChange($event)">
+                            <label class="custom-file-label custom-file-label" for="customFile"> <span
+                                    *ngIf="!fileName">Choose
+                                    Image</span><span *ngIf="fileName">{{fileName}}</span></label>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-icon matSuffix>perm_identity</mat-icon> -->
+                            <mat-label>Status</mat-label>
+                            <mat-select [(ngModel)]="status" name="Status">
+                                <mat-option value="active">Active </mat-option>
+                                <mat-option value="inactive">InActive </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <button *ngIf="pageName == 'createWebBanner'" (click)="addWebBanner()" mat-button
+                            style="background: #C2185B;color: white;margin-top: 10px;font-weight: bold;">
+                            Submit</button>
+                        <button *ngIf="pageName == 'editWebBanner'" (click)="updateWebBanner()" mat-button
+                            style="background: #C2185B;color: white;margin-top: 10px;font-weight: bold;">
+                            Update</button>
+                    </div>
+                </div>
+
+                <div class="row" style="width: 100%;">
+                    <div *ngIf="base64" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 12px;">
+                        <img style="width: 100%;height: 300px;object-fit: cover;" [src]="base64">
+                    </div>
+                    <div *ngIf="banner?.bannerUrl" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                        style="margin-top: 12px;">
+                        <img style="width: 100%;height: 300px;object-fit: cover;" src="{{banner?.bannerUrl}}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cdk-virtual-scroll-viewport>
